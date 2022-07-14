@@ -1,2 +1,2 @@
 # Dapp
-Decentralized application develop by Vue+Truffle+Ganache
+Decentralized application developed by Vue+Truffle+Ganache
