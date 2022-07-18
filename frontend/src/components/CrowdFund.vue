@@ -71,11 +71,13 @@ export default {
                 this.provider = window.ethereum;
                 try{
                     await window.ethereum.enable();
-                }catch(error){}
+                }catch(error){
+                    console.log('error caught');
+                }
             } else if (window.web3){
                 this.provider = window.web3.currentProvider;
             } else {
-                this.provider = new Web3.providers.HttpProvider("http://127.0.0.1:")
+                this.provider = new Web3.providers.HttpProvider("http://127.0.0.1:8545")
             }
             this.web3 = new Web3(this.provider);
             this.web3.eth.getAccounts().then(accs=>{

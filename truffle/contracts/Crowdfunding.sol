@@ -9,7 +9,7 @@ contract Crowdfunding {
     // 众筹截止时间
     uint public endTime;
     // 记录当前众筹价格
-    uint public price = 0.02 ether;
+    uint public price = 5 ether;
     // 作者提取资金之后，关闭众筹
     bool public closed = false;
     // （构造函数）部署合约时，初始化作者及众筹结束时间
@@ -28,7 +28,7 @@ contract Crowdfunding {
         require(joined[msg.sender] == 0, "You have participated in crowdfunding!");
         require(msg.value >= price, "You should offer a higher price!");
         joined[msg.sender] = msg.value;
-        updatePrice();
+        //updatePrice();
     }
     // 作者提取资金
     function withdrawFund() external payable {
@@ -41,7 +41,7 @@ contract Crowdfunding {
     // 读者赎回资金
     function withdraw() external payable {
         require(block.timestamp > endTime, "Crowdingfunding is getting on!");
-        require(!closed, "Goal achieved and Funds withdrawn.");
+        require(!closed, "Goal achieved and funds withdrawn.");
         require(Target > address(this).balance, "Goal achieved.Your fund cannot be withdrawn");
         payable(msg.sender).transfer(joined[msg.sender]);
     }
