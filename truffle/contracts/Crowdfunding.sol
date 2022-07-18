@@ -5,7 +5,7 @@ contract Crowdfunding {
     // 参与金额
     mapping(address => uint) public joined;
     // 众筹目标
-    uint constant Target = 10 ether;
+    uint public Target;
     // 众筹截止时间
     uint public endTime;
     // 记录当前众筹价格
@@ -15,7 +15,8 @@ contract Crowdfunding {
     // （构造函数）部署合约时，初始化作者及众筹结束时间
     constructor() public {
         author = msg.sender;
-        endTime = block.timestamp + 30 days;
+        endTime = block.timestamp + 5 minutes;
+        Target = 10 ether;
     }
     // 更新价格，这是一个内部函数
     function updatePrice() internal {

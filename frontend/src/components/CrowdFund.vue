@@ -1,8 +1,8 @@
 <template>
 
 <div class="content">
-    <h3> 新书众筹 </h3>
-    <span> 以最低的价格获取我的新书 </span>
+    <h3> 众筹 </h3>
+    <span>众筹总额度：<b>{{target}} ETH</b></span>
     <div class="status">
         <div v-if="!closed">已众筹资金：<b>{{ total }} ETH </b></div>
         <div v-if="closed">众筹已完成</div>
@@ -47,10 +47,11 @@ export default {
         return {
             price: null,
             total: 0,
+            target: 0,
             closed: true,
             joinPrice: null,
             joined: false,
-            endData: "null",
+            endDate: "null",
             isAuthor: true,
         }
     },
@@ -96,7 +97,11 @@ export default {
         async getCrowdInfo() {
             // 获取合约的余额
             this.web3.eth.getBalance(this.crowdFund.address).then(r => {
-                    this.total = this.web3.utils.fromWei(r);
+                this.total = this.web3.utils.fromWei(r);
+            });
+
+            this.crowdFund.Target().then(r => {
+                this.Target = this.web3.utils.fromWei(r);
             });
 
             // 获取读者的参与金额
