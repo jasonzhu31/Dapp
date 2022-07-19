@@ -100,9 +100,14 @@ export default {
                 this.total = this.web3.utils.fromWei(r);
             });
 
+            this.Target = 10;
+
+            /*
             this.crowdFund.Target().then(r => {
-                this.Target = this.web3.utils.fromWei(r);
+                //this.Target = this.web3.utils.fromWei(r);
+                this.Target = 10;
             });
+            */
 
             // 获取读者的参与金额
             // joined在合约中是public的状态变量，自动生成相应的访问器函数
